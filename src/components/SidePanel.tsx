@@ -6,13 +6,19 @@ interface SidePanelProps {
   activeTab: string
   setActiveTab: (tab: string) => void
   tabList: Tab[]
+  user?: {
+    id: string
+    name: string
+    email: string
+  }
 }
 
-export default function SidePanel({ activeTab, setActiveTab, tabList }: SidePanelProps) {
+export default function SidePanel({ activeTab, setActiveTab, tabList, user }: SidePanelProps) {
 
   return (
     <div className="w-64 bg-white border-r">
       <div className="p-4">
+        <h2 className="text-xl font-semibold mb-4">Welcome, {user?.name}</h2>
         <h2 className="text-xl font-semibold mb-4">Filters</h2>
         <div className="space-y-2">
           {tabList.map((tab) => (
