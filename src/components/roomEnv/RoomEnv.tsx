@@ -5,7 +5,7 @@ import { GetRoomByIdResponse } from '@/types/api';
 import { BASE_URL } from '@/constants';
 import ShowAction from './ShowAction';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Loader2, LogOut } from 'lucide-react';
 
 interface RoomEnvProps {
   userId: string;
@@ -34,9 +34,11 @@ const RoomEnv = ({ userId, roomId }: RoomEnvProps) => {
       setLoading(false);
     }
   }, [roomId]);
+
   useEffect(() => {
     if (roomId && !fetchRoomInitial.current) {
       fetchRoomInitial.current = true;
+      console.log('fetching room')
       fetchRoom();
     }
   }, [roomId, fetchRoom]);
@@ -111,17 +113,30 @@ const RoomEnv = ({ userId, roomId }: RoomEnvProps) => {
     router.push(`/room?userId=${userId}`);
   };
 
-  console.log(room)
-
   return (
     <div className="flex flex-col h-screen bg-gray-50">
+      {loading ? (
+        <div className="fixed inset-0 bg-white bg-opacity-80 flex items-center justify-center z-50">
+          <div className="flex flex-col items-center gap-3">
+            <Loader2 className="w-10 h-10 animate-spin text-blue-600" />
+            <p className="text-gray-600 font-medium">Loading...</p>
+          </div>
+        </div>
+      ) : null}
       {/* Top Header */}
       <div className="bg-white shadow-sm px-6 pb-4 pt-2 border-b">
-        <div className='flex items-center gap-x-4'>
-          <button onClick={leaveRoom} className='bg-transparent text-black border-none'>
-            <ArrowLeft className='w-6 h-6' />
-          </button>
-          <h1 className="text-3xl font-bold">{room?.title}</h1>
+        <div className='flex items-center justify-between gap-x-4'>
+          <div className='flex items-center gap-x-4'>
+            <button onClick={leaveRoom} className='bg-transparent text-black border-none'>
+              <ArrowLeft className='w-6 h-6' />
+            </button>
+            <h1 className="text-3xl font-bold">{room?.title}</h1>
+          </div>
+          <div>
+            <button onClick={leaveRoom} className='bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors px-3 py-2'>
+              <LogOut className='w-6 h-6' />
+            </button>
+          </div>
         </div>
         <div className="mt-2 text-gray-600 flex justify-between items-center gap-x-4">
           <p className=''>{room?.description}</p>

@@ -65,7 +65,7 @@ export default function GroupList({ groupsList, handleJoinGroup, personalGrp, ha
                 {group?.members?.length ?? 0}/{group.capacity} members
               </div>
               {
-                group?.type === 'private' && (
+                group?.private && (
                   <div className="text-sm text-gray-500">
                     <LockKeyhole className="w-4 h-4" />
                   </div>
@@ -78,11 +78,11 @@ export default function GroupList({ groupsList, handleJoinGroup, personalGrp, ha
           </div>
 
           <div className={"flex justify-between gap-x-2"}>
-            <button className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" onClick={() => handleLeaveGroup(group?.id)}>
-              {personalGrp ? 'Leave Group' : 'Reject'}
+            <button className="w-full py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors" onClick={() => handleLeaveGroup(group?.id)}>
+              {personalGrp ? 'Leave' : 'Reject'}
             </button>
             <button className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" onClick={() => handleJoinGroup(group?.id)}>
-              {personalGrp ? 'Enter' : 'Join Group'}
+              {personalGrp ? 'Enter' : 'Join'}
             </button>
           </div>
         </div>
