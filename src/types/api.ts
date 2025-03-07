@@ -14,7 +14,7 @@ export interface Group {
   createBy: string
   capacity: number
   activityScore: number
-  
+  recommendationScore?: number
 }
 
 export interface GetGroupByTagsResponse {

@@ -152,7 +152,7 @@ const RoomEnv = ({ userId, roomId }: RoomEnvProps) => {
         <div className="flex-1 flex flex-col">
           <div className="flex-1 overflow-y-auto p-4">
             <div className="space-y-4">
-              {/* {(!room?.actions?.length || (room?.actions?.length && room?.actions?.find((action) => action.type === 'CALL'))) && (
+              {(!room?.actions?.length || (room?.actions?.length && room?.actions?.find((action) => action.type !== 'CALL'))) && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {room?.members?.map((member, index) => (
                     <div key={index} className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
@@ -172,7 +172,7 @@ const RoomEnv = ({ userId, roomId }: RoomEnvProps) => {
                     </div>
                   ))}
                 </div>
-              )} */}
+              )}
               {room?.actions?.map((action, index) => (
                 <ShowAction members={room?.members || []} key={index} questions={room?.questions} actionType={action.type} userId={userId} />
               ))}

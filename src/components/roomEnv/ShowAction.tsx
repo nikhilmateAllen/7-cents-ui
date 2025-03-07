@@ -20,8 +20,8 @@ const ShowAction = ({
   const [userAnswers, setUserAnswers] = useState<Record<string, string>>({})
   const [testCompleted, setTestCompleted] = useState(false)
 
-  if (true || actionType === 'CALL') {
-    return <Meeting members={members} />
+  if (actionType === 'CALL') {
+    return <Meeting members={members} userId={userId} />
   }
 
   if (actionType === 'TEST') {
@@ -88,7 +88,7 @@ const ShowAction = ({
         {currentQuestion && (
           <div>
             <div className="mb-6">
-              <h4 className="text-lg font-medium mb-4">{currentQuestion.id}</h4>
+              <h4 className="text-lg font-medium mb-4">{currentQuestion.content}</h4>
               <div className="space-y-3">
                 {currentQuestion.options.map((option, index) => (
                   <label

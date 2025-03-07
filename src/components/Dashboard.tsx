@@ -81,7 +81,8 @@ export default function Dashboard() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          tag: query.trim()
+          tag: query.trim(),
+          user_id: userId
         })
       })
       const data = await response.json()
@@ -161,7 +162,7 @@ export default function Dashboard() {
   const handleJoin = (groupId: string) => {
     if (activeTab === "user_active_groups") {
       router.push(`/room/${groupId}?userId=${userId}`)
-    } else if (activeTab === "system_recommended_groups") {
+    } else {
       handleJoinGroup(groupId)
     }
   }
