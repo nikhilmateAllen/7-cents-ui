@@ -14,12 +14,16 @@ export interface Group {
   createBy: string
   capacity: number
   activityScore: number
-  
 }
 
 export interface GetGroupByTagsResponse {
   system_recommended_groups: Group[]
   user_active_groups: Group[]
+  user?: {
+    id: string
+    name: string
+    email: string
+  }
 }
 
 export type Tab = {

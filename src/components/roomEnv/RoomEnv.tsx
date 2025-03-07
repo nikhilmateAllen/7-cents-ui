@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { GetRoomByIdResponse } from '@/types/api';
 import { BASE_URL } from '@/constants';
 import ShowAction from './ShowAction';
+import { useRouter } from 'next/navigation';
+import { ArrowLeft } from 'lucide-react';
 
 interface RoomEnvProps {
   userId: string;
@@ -17,6 +19,7 @@ const RoomEnv = ({ userId, roomId }: RoomEnvProps) => {
   const [loading, setLoading] = useState(true);
   const fetchRoomInitial = useRef(true);
   const pollingInterval = useRef<ReturnType<typeof setInterval>>();
+  const router = useRouter();
 
   const fetchRoom = useCallback(async () => {
     try {
@@ -104,22 +107,9 @@ const RoomEnv = ({ userId, roomId }: RoomEnvProps) => {
     })
   }
 
-  // if (loading) {
-  //   return (
-  //     <div className="flex h-screen items-center justify-center">
-  //       <div className="text-xl">Loading room...</div>
-  //     </div>
-  //   );
-  // }
-
-  // if (!room) {
-  //   return (
-  //     <div className="flex h-screen items-center justify-center">
-  //       <div className="text-xl text-red-500">Room not found</div>
-  //     </div>
-  //   );
-  // }
-
+  const leaveRoom = () => {
+    router.push(`/room?userId=${userId}`);
+  };
 
   console.log(room)
 
@@ -127,22 +117,27 @@ const RoomEnv = ({ userId, roomId }: RoomEnvProps) => {
     <div className="flex flex-col h-screen bg-gray-50">
       {/* Top Header */}
       <div className="bg-white shadow-sm px-6 pb-4 pt-2 border-b">
-        <h1 className="text-3xl font-bold">{room?.title}</h1>
+        <div className='flex items-center gap-x-4'>
+          <button onClick={leaveRoom} className='bg-transparent text-black border-none'>
+            <ArrowLeft className='w-6 h-6' />
+          </button>
+          <h1 className="text-3xl font-bold">{room?.title}</h1>
+        </div>
         <div className="mt-2 text-gray-600 flex justify-between items-center gap-x-4">
           <p className=''>{room?.description}</p>
           <div className="mt-2 flex flex-wrap gap-4 text-sm">
             <span className="flex items-center gap-1">
-              <span className="font-medium">Type:</span> {room?.type}
-            </span>
-            <span className="flex items-center gap-1">
               <span className="font-medium">Members:</span> {room?.members?.length ?? 0}/{room?.capacity ?? 0}
+            </span>
+            {/* <span className="flex items-center gap-1">
+              <span className="font-medium">Type:</span> {room?.type}
             </span>
             <span className="flex items-center gap-1">
               <span className="font-medium">Activity Score:</span> {room?.activityScore ?? 0}
             </span>
             <span className="flex items-center gap-1">
               <span className="font-medium">Created by:</span> {room?.createBy || 0}
-            </span>
+            </span> */}
           </div>
         </div>
       </div>

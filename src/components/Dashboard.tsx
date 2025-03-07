@@ -177,7 +177,7 @@ export default function Dashboard() {
         </div>
       ) : null}
       {/* Left Panel */}
-      <SidePanel activeTab={activeTab} setActiveTab={handleSetActiveTab} tabList={tabList} />
+      <SidePanel activeTab={activeTab} setActiveTab={handleSetActiveTab} tabList={tabList} user={groupsByTagsData?.user} />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
