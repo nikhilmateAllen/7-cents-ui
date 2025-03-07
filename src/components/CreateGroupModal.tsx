@@ -32,7 +32,7 @@ export default function CreateGroupModal({ isOpen, onClose, handleSuccess, userI
         "title": title,
         "tag": topic,
         "capacity": Number(capacity),
-        "is_private": isPrivate,
+        "private": isPrivate,
         "createBy": userId,
       }
       const response = await fetch(`${BASE_URL}/api/groups`, {
