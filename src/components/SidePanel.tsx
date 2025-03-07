@@ -18,6 +18,7 @@ export default function SidePanel({ activeTab, setActiveTab, tabList, user }: Si
   return (
     <div className="w-64 bg-white border-r">
       <div className="p-4">
+        <h2 className="text-xl px-6 py-3 border-2 border-solid border-blue-950 rounded-lg mb-4 text-blue-950 font-bold">ALLEN Connect</h2>
         <h2 className="text-xl font-semibold mb-4">Welcome, {user?.name}</h2>
         <h2 className="text-xl font-semibold mb-4">Filters</h2>
         <div className="space-y-2">

@@ -124,18 +124,19 @@ const RoomEnv = ({ userId, roomId }: RoomEnvProps) => {
         </div>
       ) : null}
       {/* Top Header */}
-      <div className="bg-white shadow-sm px-6 pb-4 pt-2 border-b">
+      <div className="bg-white relative shadow-sm px-6 pb-4 pt-2 border-b">
         <div className='flex items-center justify-between gap-x-4'>
           <div className='flex items-center gap-x-4'>
             <button onClick={leaveRoom} className='bg-transparent text-black border-none'>
               <ArrowLeft className='w-6 h-6' />
             </button>
-            <h1 className="text-3xl font-bold">{room?.title}</h1>
+            <h1 className="text-2xl font-bold">{room?.title}</h1>
           </div>
-          <div>
+          <div className='inline-flex items-center gap-x-4'>
             <button onClick={leaveRoom} className='bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors px-3 py-2'>
               <LogOut className='w-6 h-6' />
             </button>
+            <h2 className="inline-flex text-lg px-3 py-1 border border-solid border-blue-950 rounded-lg text-blue-950 font-bold">ALLEN Connect</h2>
           </div>
         </div>
         <div className="mt-2 text-gray-600 flex justify-between items-center gap-x-4">
